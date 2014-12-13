@@ -55,6 +55,17 @@ begin
   end;
 end;
 
+procedure min_array(var a:array_1; n:integer; var min:integer);
+var i:integer;
+begin
+  min:=a[1];
+  for i:=2 to n do
+  begin
+    if min>a[i] then 
+      min:=a[i];
+  end;
+end;
+
 procedure find_min_array(var a:array_1; start, n:integer; var pos_min:integer);
 var i,min:integer;
 begin
@@ -102,6 +113,45 @@ begin
   end;
 end;
 
+procedure sort_bubble(var a:array_1; n:integer);
+var i,j:integer;
+sw:boolean;
+begin
+  for i:=1 to n-1 do
+  begin
+    sw:=true;
+    for j:=1 to n-i do
+    begin
+      if a[j]>a[j+1] then 
+      begin
+        swap_elm(a,j,j+1);
+        sw:=false;
+      end;
+    end;
+    if sw then 
+      break;
+  end;
+end;
+
+procedure sort_count(var a:array_1; n:integer);
+var i,j,p,min,max:integer;
+m:array_1;
+begin
+  max_array(a,n,max);
+  min_array(a,n,min);
+  for i:=1 to n do
+    inc(m[a[i]-min+1]);
+  p:=1;
+  for i:=1 to max-min+1 do
+  begin
+    for j:=1 to m[i] do
+    begin
+      a[p]:=i+min-1;
+      p:=p+1;
+    end;
+  end;
+end;
+
 var a:array_1;
     a_sort:array_1;
 i,j,min_value,max_value,n:integer;
@@ -114,7 +164,9 @@ begin
   a_sort:=a;
   output_array(a,n);
   writeln();
-  //sort_choice(a,n);
-  sort_insert(a,n);
-  output_array(a,n);
+  //sort_choice(a_sort,n);
+  //sort_insert(a_sort,n);
+  //sort_bubble(a_sort,n);
+  //sort_count(a_sort,n);
+  output_array(a_sort,n);
 end.
