@@ -71,7 +71,7 @@ begin
         flag:=true;
         write('Выберите способ сортировки: ');
         readln(sort);
-        if (i<0) or (i>7) then
+        if (sort<1) or (sort>7) then
         begin
           flag:=false;
           writeln('Неверный ввод.');
